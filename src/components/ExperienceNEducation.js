@@ -9,50 +9,41 @@ const Item = (props) => {
     storYrTo,
     storRole,
     storRoleDesc,
-    itemAdd,
     deleteInputVal,
     previewModeStatus,
   } = props;
 
-  return (
-    <>
-      {itemAdd ? (
-        <></>
-      ) : (
-        storComp.map((e, index) => {
-          return (
-            <div className="ui grid">
-              <div className="left floated left aligned five wide column contentTimeline">
-                <div>
-                  {storComp[index]}, {storCity[index]}
-                </div>
-                <div>
-                  {storYrFrm[index]} - {storYrTo[index]}
-                </div>
-              </div>
-              <div className="right floated left aligned ten wide column">
-                <div className="roleItem">{storRole[index]}</div>
-                <div>{storRoleDesc[index]}</div>
-              </div>
-              <div className="one wide column">
-                {/* <i className="edit icon"></i> */}
-                {previewModeStatus ? (
-                  <></>
-                ) : (
-                  <button className="ui icon button">
-                    <i
-                      className="delete icon"
-                      onClick={(e) => deleteInputVal(e, category, index)}
-                    ></i>
-                  </button>
-                )}
-              </div>
-            </div>
-          );
-        })
-      )}
-    </>
-  );
+  return storComp.map((e, index) => {
+    return (
+      <div className="ui grid">
+        <div className="left floated left aligned five wide column contentTimeline">
+          <div>
+            {storComp[index]}, {storCity[index]}
+          </div>
+          <div>
+            {storYrFrm[index]} - {storYrTo[index]}
+          </div>
+        </div>
+        <div className="right floated left aligned ten wide column">
+          <div className="roleItem">{storRole[index]}</div>
+          <div>{storRoleDesc[index]}</div>
+        </div>
+        <div className="one wide column">
+          {/* <i className="edit icon"></i> */}
+          {previewModeStatus ? (
+            <></>
+          ) : (
+            <button className="ui icon button">
+              <i
+                className="delete icon"
+                onClick={(e) => deleteInputVal(e, category, index)}
+              ></i>
+            </button>
+          )}
+        </div>
+      </div>
+    );
+  });
 };
 
 const AddItem = (props) => {
@@ -99,7 +90,7 @@ const AddItem = (props) => {
 
   return (
     <>
-      {categoryAdd ? (
+      {categoryAdd && !previewModeStatus ? (
         <form
           className="ui form"
           onSubmit={(e) => {
@@ -214,20 +205,14 @@ const AddItem = (props) => {
 const Main = (props) => {
   const {
     previewModeStatus,
-    expStorComp,
-    expStorCity,
-    expStorYrFrm,
-    expStorYrTo,
-    expStorRole,
-    expStorRoleDesc,
-    experienceAdd,
-    eduStorComp,
-    eduStorCity,
-    eduStorYrFrm,
-    eduStorYrTo,
-    eduStorRole,
-    eduStorRoleDesc,
-    educationAdd,
+    storComp,
+    storCity,
+    storYrFrm,
+    storYrTo,
+    storRole,
+    storRoleDesc,
+    itemAdd,
+    category,
     addItemMode,
     submitItem,
     updateInputVal,
@@ -237,54 +222,27 @@ const Main = (props) => {
 
   return (
     <>
-      <div className="mainContent">
-        <div className="sectionHeader ui medium header">WORK EXPERIENCES</div>
-        <Item
-          category="experience"
-          storComp={expStorComp}
-          storCity={expStorCity}
-          storYrFrm={expStorYrFrm}
-          storYrTo={expStorYrTo}
-          storRole={expStorRole}
-          storRoleDesc={expStorRoleDesc}
-          itemAdd={experienceAdd}
-          deleteInputVal={deleteInputVal}
-          previewModeStatus={previewModeStatus}
-        />
-        <AddItem
-          category="experience"
-          categoryAdd={experienceAdd}
-          addItemMode={addItemMode}
-          submitItem={submitItem}
-          updateInputVal={updateInputVal}
-          cancelInput={cancelInput}
-          previewModeStatus={previewModeStatus}
-        />
-      </div>
-      <div className="mainContent">
-        <div className="sectionHeader ui medium header">EDUCATION</div>
-        <Item
-          category="education"
-          storComp={eduStorComp}
-          storCity={eduStorCity}
-          storYrFrm={eduStorYrFrm}
-          storYrTo={eduStorYrTo}
-          storRole={eduStorRole}
-          storRoleDesc={eduStorRoleDesc}
-          itemAdd={educationAdd}
-          deleteInputVal={deleteInputVal}
-          previewModeStatus={previewModeStatus}
-        />
-        <AddItem
-          category="education"
-          categoryAdd={educationAdd}
-          addItemMode={addItemMode}
-          submitItem={submitItem}
-          updateInputVal={updateInputVal}
-          cancelInput={cancelInput}
-          previewModeStatus={previewModeStatus}
-        />
-      </div>
+      <Item
+        category={category}
+        storComp={storComp}
+        storCity={storCity}
+        storYrFrm={storYrFrm}
+        storYrTo={storYrTo}
+        storRole={storRole}
+        storRoleDesc={storRoleDesc}
+        itemAdd={itemAdd}
+        deleteInputVal={deleteInputVal}
+        previewModeStatus={previewModeStatus}
+      />
+      <AddItem
+        category={category}
+        categoryAdd={itemAdd}
+        addItemMode={addItemMode}
+        submitItem={submitItem}
+        updateInputVal={updateInputVal}
+        cancelInput={cancelInput}
+        previewModeStatus={previewModeStatus}
+      />
     </>
   );
 };

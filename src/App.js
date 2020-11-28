@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Personal from "./components/Personal";
 import "./App.css";
-import Main from "./components/Main";
+import ExperienceNEducation from "./components/ExperienceNEducation";
 import Expertise from "./components/Expertise";
 
 class App extends Component {
@@ -299,28 +299,46 @@ class App extends Component {
             personalEditMode={this.personalEditMode}
             personalEditChange={this.personalEditChange}
           />
-          <Main
-            previewModeStatus={previewModeStatus}
-            expStorComp={expStorComp}
-            expStorCity={expStorCity}
-            expStorYrFrm={expStorYrFrm}
-            expStorYrTo={expStorYrTo}
-            expStorRole={expStorRole}
-            expStorRoleDesc={expStorRoleDesc}
-            experienceAdd={experienceAdd}
-            eduStorComp={eduStorComp}
-            eduStorCity={eduStorCity}
-            eduStorYrFrm={eduStorYrFrm}
-            eduStorYrTo={eduStorYrTo}
-            eduStorRole={eduStorRole}
-            eduStorRoleDesc={eduStorRoleDesc}
-            educationAdd={educationAdd}
-            addItemMode={this.addItemMode}
-            submitItem={this.submitItem}
-            updateInputVal={this.updateInputVal}
-            deleteInputVal={this.deleteInputVal}
-            cancelInput={this.cancelInput}
-          />
+          <div className="mainContent">
+            <div className="sectionHeader ui medium header">
+              WORK EXPERIENCES
+            </div>
+            <ExperienceNEducation
+              previewModeStatus={previewModeStatus}
+              storComp={expStorComp}
+              storCity={expStorCity}
+              storYrFrm={expStorYrFrm}
+              storYrTo={expStorYrTo}
+              storRole={expStorRole}
+              storRoleDesc={expStorRoleDesc}
+              itemAdd={experienceAdd}
+              category="experience"
+              addItemMode={this.addItemMode}
+              submitItem={this.submitItem}
+              updateInputVal={this.updateInputVal}
+              deleteInputVal={this.deleteInputVal}
+              cancelInput={this.cancelInput}
+            />
+          </div>
+          <div className="mainContent">
+            <div className="sectionHeader ui medium header">EDUCATION</div>
+            <ExperienceNEducation
+              previewModeStatus={previewModeStatus}
+              storComp={eduStorComp}
+              storCity={eduStorCity}
+              storYrFrm={eduStorYrFrm}
+              storYrTo={eduStorYrTo}
+              storRole={eduStorRole}
+              storRoleDesc={eduStorRoleDesc}
+              itemAdd={educationAdd}
+              category="education"
+              addItemMode={this.addItemMode}
+              submitItem={this.submitItem}
+              updateInputVal={this.updateInputVal}
+              deleteInputVal={this.deleteInputVal}
+              cancelInput={this.cancelInput}
+            />
+          </div>
           <Expertise
             previewModeStatus={previewModeStatus}
             expertStor={expertStor}
